@@ -5,6 +5,7 @@ import ModalBase from "./ModalBase";
 import CustomText from "../components/common/CustomText";
 import ColorsInput from "../components/modal/AddNote/ColorsInput";
 import { colorOptions } from "./AddNote.interface";
+import { saveNewGroupToLS } from "../utilities/localStorage/group";
 
 interface Iprops {
     showModal: boolean
@@ -17,12 +18,18 @@ const AddNoteModal: React.FC<Iprops> = ({ showModal, closeModal }) => {
 
     const [groupName, setGroupName] = useState("");
     const [color, setColor] = useState<IColorState>("#B38BFA");
-
+    const [groupNameError, setGroupNameError] = useState("");
 
     const handleColorChange = (c: IColorState) => setColor(c)
 
     const handleSubmit = () => {
+        if (groupName.trim() === "") return setGroupNameError("group name is required");
 
+        const id = Date.now().toString()
+        saveNewGroupToLS(groupName, color, id)
+        closeModal();
+        setGroupName("");
+        setColor("#B38BFA")
     }
 
     return (

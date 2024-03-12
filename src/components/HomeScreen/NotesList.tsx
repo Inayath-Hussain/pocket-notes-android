@@ -1,25 +1,17 @@
 import { useState } from "react";
 import { Button, FlatList, ListRenderItem, ScrollView, StyleSheet, Text, View } from "react-native"
+import { useMMKVString } from "react-native-mmkv";
+import { IGroup, getGroupsFromLS, groupKey } from "../../utilities/localStorage/group";
+import CustomText from "../common/CustomText";
 
-interface INote {
-    title: string
-    color: string;
-}
 
 const NotesList = () => {
-    const [notes, setNotes] = useState<INote[]>([]);
-    const [count, setCount] = useState(0);
-
-    const handleAdd = () => {
-        setCount(count + 1)
-        setNotes(prev => [...prev, { title: `Item ${count}`, color: "red" }])
-    }
+    const [groups, setGroups] = useMMKVString(groupKey)
+    const notes = groups ? JSON.parse(groups) : []
 
     return (
         <View style={NotesListStyles.container}>
             <FlatList data={notes} renderItem={Note} scrollEnabled />
-
-            <Button title="Add Note" onPress={handleAdd} />
         </View>
     );
 }
@@ -38,17 +30,19 @@ export default NotesList;
 
 
 
-const Note: ListRenderItem<INote> = ({ item }) => {
+const Note: ListRenderItem<IGroup> = ({ item }) => {
     return (
         <View style={NoteStyle.container}>
             {/* dot */}
-            <View style={[{ backgroundColor: item.color }, NoteStyle.dot]} />
+            <View style={[NoteStyle.dot, dotColor(item.bgColor).dotColor]} />
 
-            <Text style={NoteStyle.text}>{item.title}</Text>
+            <CustomText style={NoteStyle.text} text={item.groupName} />
         </View>
     )
 }
 
+
+const dotColor = (color: string) => StyleSheet.create({ dotColor: { backgroundColor: color } })
 
 const NoteStyle = StyleSheet.create({
     container: {
@@ -63,9 +57,11 @@ const NoteStyle = StyleSheet.create({
     },
 
     dot: {
-        width: 24,
-        height: 24,
-        borderRadius: 50,
+        width: 20,
+        height: 20,
+        borderRadius: 10,
+        justifyContent: "center",
+        alignItems: "center"
     },
 
     text: {
