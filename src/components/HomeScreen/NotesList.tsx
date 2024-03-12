@@ -19,7 +19,7 @@ const NotesList = () => {
         <View style={NotesListStyles.container}>
             <FlatList data={notes} renderItem={Note} scrollEnabled />
 
-            {/* <Button title="Add Note" onPress={handleAdd} /> */}
+            <Button title="Add Note" onPress={handleAdd} />
         </View>
     );
 }
@@ -69,6 +69,9 @@ const NoteStyle = StyleSheet.create({
     },
 
     text: {
-        fontSize: 24
+        fontSize: 24,
+        textTransform: "capitalize",
+        fontWeight: "500",
+        fontFamily: "roboto"
     }
 })

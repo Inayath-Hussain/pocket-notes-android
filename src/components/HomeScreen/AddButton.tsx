@@ -1,16 +1,25 @@
 import { StyleSheet, Text, TouchableHighlight, TouchableNativeFeedback, View } from "react-native";
 import { colors } from "../../colors";
+import AddNoteModal from "../../modal/AddNote";
+import { useState } from "react";
 
 const AddButton = () => {
 
+    const [showModal, setShowModal] = useState(false);
+
+    const closeModal = () => setShowModal(false);
+
     return (
-        <TouchableHighlight onPress={() => console.log("hello")}>
-            <View style={styles.button}>
+        <>
+            <TouchableHighlight style={styles.button}
+                onPress={() => setShowModal(true)}>
                 <Text style={styles.text}>
                     &#43;
                 </Text>
-            </View>
-        </TouchableHighlight>
+            </TouchableHighlight>
+
+            <AddNoteModal showModal={showModal} closeModal={closeModal} />
+        </>
     );
 }
 
