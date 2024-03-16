@@ -1,14 +1,15 @@
 import { StyleProp, StyleSheet, Text, TextStyle } from "react-native";
-import { colors } from "../../colors";
+import { colors } from "../../config/colors";
 
 interface Iprops {
     style?: StyleProp<TextStyle>
+    numberOfLines?: number
     text: string
 }
 
-const CustomText: React.FC<Iprops> = ({ style, text }) => {
+const CustomText: React.FC<Iprops> = ({ style, text, numberOfLines = undefined }) => {
     return (
-        <Text style={[styles.text, style]}>
+        <Text numberOfLines={numberOfLines} ellipsizeMode="tail" style={[styles.text, style]}>
             {text}
         </Text>
     );

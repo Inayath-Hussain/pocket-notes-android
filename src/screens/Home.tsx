@@ -1,5 +1,5 @@
 import { StyleSheet, View, Text } from "react-native";
-import { colors } from "../colors";
+import { colors } from "../config/colors";
 import NotesList from "../components/HomeScreen/NotesList";
 import AddButton from "../components/HomeScreen/AddButton";
 

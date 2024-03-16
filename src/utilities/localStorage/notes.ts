@@ -9,7 +9,7 @@ export type Inote = InoteGeneric<Date>
 
 
 // notes when parsed from local storage
-type InoteJSON = InoteGeneric<string>
+export type InoteJSON = InoteGeneric<string>
 
 
 /**

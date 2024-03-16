@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { StyleSheet, TextInput, TouchableHighlight, TouchableWithoutFeedback, View } from "react-native";
-import { colors } from "../colors";
+import { colors } from "../config/colors";
 import ModalBase from "./ModalBase";
 import CustomText from "../components/common/CustomText";
 import ColorsInput from "../components/modal/AddNote/ColorsInput";

@@ -25,20 +25,33 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from "@react-navigation/native-stack"
+
 import HomeScreen from "./screens/Home"
+import NoteScreen from './screens/NotesScreen';
+import { routes } from './routes';
+import { RootStackParamList } from './config/interface';
+
+
+
 
 type SectionProps = PropsWithChildren<{
   title: string;
 }>;
 
-function Section({ children, title }: SectionProps): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
+// function Section({ children, title }: SectionProps): React.JSX.Element {
+//   const isDarkMode = useColorScheme() === 'dark';
+//   return (
+//     <View style={styles.sectionContainer}>
 
-    </View>
-  );
-}
+//     </View>
+//   );
+// }
+
+
+
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function App(): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
@@ -48,13 +61,19 @@ function App(): React.JSX.Element {
   };
 
   return (
-    <SafeAreaView style={backgroundStyle}>
+    <NavigationContainer >
+
       <StatusBar
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}
       />
-      <HomeScreen />
-    </SafeAreaView>
+
+      <Stack.Navigator initialRouteName={routes.home} screenOptions={{ headerShown: false }}>
+        <Stack.Screen name={routes.home} component={HomeScreen} />
+        <Stack.Screen name={routes.note} component={NoteScreen} />
+      </Stack.Navigator>
+
+    </NavigationContainer>
   );
 }
 
