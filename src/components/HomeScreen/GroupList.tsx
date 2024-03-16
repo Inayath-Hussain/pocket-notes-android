@@ -1,7 +1,5 @@
-import { useState } from "react";
-import { Button, FlatList, ListRenderItem, ScrollView, StyleSheet, Text, TouchableWithoutFeedback, View } from "react-native"
+import { FlatList, ListRenderItem, StyleSheet, View } from "react-native"
 import { useMMKVString } from "react-native-mmkv";
-import { Link } from "@react-navigation/native"
 
 import { IGroup, groupKey } from "../../utilities/localStorage/group";
 import CustomText from "../common/CustomText";
@@ -51,8 +49,6 @@ const Group: ListRenderItem<IGroup> = ({ item }) => {
     )
 }
 
-
-const dotStyle = (color: string) => StyleSheet.create({ color: { backgroundColor: color } })
 
 const GroupStyle = StyleSheet.create({
     container: {
