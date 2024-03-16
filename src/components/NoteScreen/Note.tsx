@@ -1,7 +1,7 @@
-import { StyleSheet, View, ListRenderItem } from "react-native";
-import { colors } from "../../config/colors";
-import CustomText from "../common/CustomText";
 import React from "react";
+import { StyleSheet, View, ListRenderItem } from "react-native";
+import CustomText from "../common/CustomText";
+import { colors } from "../../config/colors";
 import { InoteJSON } from "../../utilities/localStorage/notes";
 import { getDate } from "../../utilities/dateTime/date";
 import { getTime } from "../../utilities/dateTime/time";

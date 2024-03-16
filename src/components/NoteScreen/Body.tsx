@@ -1,8 +1,7 @@
 import { FlatList, StyleSheet, View } from "react-native";
-import { colors } from "../../config/colors";
 import { useMMKVString } from "react-native-mmkv";
+import { colors } from "../../config/colors";
 import { InoteJSON } from "../../utilities/localStorage/notes";
-import { storage } from "../../utilities/localStorage/storageInstance";
 import Note from "./Note";
 
 
@@ -12,7 +11,7 @@ interface Iprops {
 
 const Body: React.FC<Iprops> = ({ id }) => {
 
-    const [notes, setNotes] = useMMKVString(id);
+    const [notes] = useMMKVString(id);
 
     const parsedNotes = notes ? JSON.parse(notes) as InoteJSON[] : [];
 
@@ -20,10 +19,6 @@ const Body: React.FC<Iprops> = ({ id }) => {
         <View style={styles.container}>
 
             <FlatList data={parsedNotes} renderItem={Note} scrollEnabled />
-
-            {/* {parsedNotes.map(p => (
-                <Note content={p.content} creationDate={p.creationDate} key={p.creationDate} />
-            ))} */}
 
         </View>
     );

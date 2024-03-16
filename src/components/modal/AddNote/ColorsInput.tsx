@@ -1,6 +1,5 @@
 import { StyleSheet, TouchableWithoutFeedback, View } from "react-native";
 import { colorOptions } from "../../../modal/AddNote.interface";
-import CustomText from "../../common/CustomText";
 import { colors } from "../../../config/colors";
 
 type ISingleColorValue = typeof colorOptions[number]
