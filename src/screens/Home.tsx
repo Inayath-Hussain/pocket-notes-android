@@ -1,6 +1,6 @@
 import { StyleSheet, View, Text } from "react-native";
 import { colors } from "../config/colors";
-import NotesList from "../components/HomeScreen/NotesList";
+import GroupList from "../components/HomeScreen/GroupList";
 import AddButton from "../components/HomeScreen/AddButton";
 
 const HomeScreen = () => {
@@ -11,7 +11,7 @@ const HomeScreen = () => {
                 Pocket Notes
             </Text>
 
-            <NotesList />
+            <GroupList />
 
             <AddButton />
         </View>

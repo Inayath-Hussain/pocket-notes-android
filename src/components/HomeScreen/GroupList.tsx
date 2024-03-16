@@ -7,20 +7,21 @@ import { IGroup, groupKey } from "../../utilities/localStorage/group";
 import CustomText from "../common/CustomText";
 import { routes } from "../../routes";
 import CustomLink from "../React-Native-Navigation/CustomLink";
+import NavIcon from "../common/NavIcon";
 
 
-const NotesList = () => {
-    const [groups, setGroups] = useMMKVString(groupKey)
-    const notes = groups ? JSON.parse(groups) : []
+const GroupList = () => {
+    const [groups] = useMMKVString(groupKey)
+    const parsedGroups = groups ? JSON.parse(groups) : []
 
     return (
-        <View style={NotesListStyles.container}>
-            <FlatList data={notes} renderItem={Note} scrollEnabled />
+        <View style={GroupListStyles.container}>
+            <FlatList data={parsedGroups} renderItem={Group} scrollEnabled />
         </View>
     );
 }
 
-const NotesListStyles = StyleSheet.create({
+const GroupListStyles = StyleSheet.create({
     container: {
         height: 200,
         display: "flex",
@@ -28,22 +29,22 @@ const NotesListStyles = StyleSheet.create({
     }
 })
 
-export default NotesList;
+export default GroupList;
 
 
 
 
 
-const Note: ListRenderItem<IGroup> = ({ item }) => {
+const Group: ListRenderItem<IGroup> = ({ item }) => {
     return (
         <CustomLink to={{ screen: routes.note, params: { id: item.id, groupName: item.groupName, bgColor: item.bgColor } }}
-            style={NoteStyle.verticalSpacing}>
+            style={GroupStyle.verticalSpacing}>
 
-            <View style={NoteStyle.container}>
-                {/* dot */}
-                <View style={[NoteStyle.dot, dotStyle(item.bgColor).color]} />
-
-                <CustomText style={NoteStyle.text} text={item.groupName} />
+            <View style={GroupStyle.container}>
+                {/* group icon */}
+                <NavIcon bgColor={item.bgColor} groupName={item.groupName} />
+                {/* group name */}
+                <CustomText style={GroupStyle.text} text={item.groupName} />
             </View>
 
         </CustomLink>
@@ -53,7 +54,7 @@ const Note: ListRenderItem<IGroup> = ({ item }) => {
 
 const dotStyle = (color: string) => StyleSheet.create({ color: { backgroundColor: color } })
 
-const NoteStyle = StyleSheet.create({
+const GroupStyle = StyleSheet.create({
     container: {
         display: "flex",
         flexDirection: "row",
