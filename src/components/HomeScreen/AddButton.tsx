@@ -22,7 +22,7 @@ const AddButton = () => {
 
             </TouchableNativeFeedback>
 
-            <AddNoteModal showModal={showModal} closeModal={closeModal} />
+            {showModal && <AddNoteModal showModal={showModal} closeModal={closeModal} />}
         </>
     );
 }

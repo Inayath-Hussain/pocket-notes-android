@@ -34,9 +34,6 @@ const AddNoteModal: React.FC<Iprops> = ({ showModal, closeModal }) => {
         const id = Date.now().toString()
         saveNewGroupToLS(groupName, color, id)
         closeModal();
-        setGroupName("");
-        setGroupNameError("");
-        setColor(colorOptions[0])
     }
 
     return (
