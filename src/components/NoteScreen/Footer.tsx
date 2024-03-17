@@ -19,6 +19,8 @@ const Footer: React.FC<Iprop> = ({ id }) => {
         setNoteText("");
     }
 
+    const disabled = noteText === ""
+
     return (
         <View style={styles.mainContainer}>
 
@@ -28,7 +30,7 @@ const Footer: React.FC<Iprop> = ({ id }) => {
                     multiline numberOfLines={4} style={styles.input} />
 
                 {/* send button */}
-                <TouchableWithoutFeedback onPress={handleSend}>
+                <TouchableWithoutFeedback onPress={handleSend} disabled={disabled}>
                     <View style={styles.sendContainer}>
                         <MemoSendIcon width={20} height={20} fill={colors.primary} />
                     </View>

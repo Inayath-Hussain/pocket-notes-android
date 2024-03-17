@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { StyleSheet, TextInput, TouchableHighlight, TouchableWithoutFeedback, View } from "react-native";
+import { useEffect, useState } from "react";
+import { StyleSheet, TextInput, TouchableWithoutFeedback, TouchableNativeFeedback, View } from "react-native";
 import { colors } from "../config/colors";
 import ModalBase from "./ModalBase";
 import CustomText from "../components/common/CustomText";
@@ -16,8 +16,14 @@ type IColorState = typeof colorOptions[number]
 
 const AddNoteModal: React.FC<Iprops> = ({ showModal, closeModal }) => {
 
+    useEffect(() => {
+        return () => {
+            console.log("Add Note Modal unmount")
+        }
+    }, [])
+
     const [groupName, setGroupName] = useState("");
-    const [color, setColor] = useState<IColorState>("#B38BFA");
+    const [color, setColor] = useState<IColorState>(colorOptions[0]);
     const [groupNameError, setGroupNameError] = useState("");
 
     const handleColorChange = (c: IColorState) => setColor(c)
@@ -29,7 +35,8 @@ const AddNoteModal: React.FC<Iprops> = ({ showModal, closeModal }) => {
         saveNewGroupToLS(groupName, color, id)
         closeModal();
         setGroupName("");
-        setColor("#B38BFA")
+        setGroupNameError("");
+        setColor(colorOptions[0])
     }
 
     return (
@@ -42,6 +49,7 @@ const AddNoteModal: React.FC<Iprops> = ({ showModal, closeModal }) => {
                     <CustomText text="Create New Group" style={styles.headerText} />
 
                     {/* group name input */}
+                    <CustomText text={groupNameError} style={styles.errorMessage} />
                     <View style={styles.inputContainer}>
                         <CustomText text="Group Name" />
                         <TextInput autoFocus value={groupName} onChangeText={(text) => setGroupName(text)}
@@ -58,9 +66,12 @@ const AddNoteModal: React.FC<Iprops> = ({ showModal, closeModal }) => {
 
 
                     {/* Submit button */}
-                    <TouchableHighlight underlayColor={colors.white} style={styles.createButton} onPress={handleSubmit}>
-                        <CustomText text="Create" style={styles.createButtonText} />
-                    </TouchableHighlight>
+                    <TouchableNativeFeedback style={styles.createButton} onPress={handleSubmit}
+                        background={TouchableNativeFeedback.Ripple("#ffffff50", false)}>
+                        <View style={styles.createButton}>
+                            <CustomText text="Create" style={styles.createButtonText} />
+                        </View>
+                    </TouchableNativeFeedback>
 
                 </View>
             </TouchableWithoutFeedback>
@@ -93,6 +104,11 @@ const styles = StyleSheet.create({
 
     createButtonText: {
         color: colors.white
+    },
+
+    errorMessage: {
+        color: "red",
+        fontSize: 14
     },
 
     headerText: {

@@ -1,4 +1,4 @@
-import { StyleSheet, Text, TouchableHighlight, TouchableNativeFeedback, View } from "react-native";
+import { StyleSheet, Text, TouchableNativeFeedback, View } from "react-native";
 import { colors } from "../../config/colors";
 import AddNoteModal from "../../modal/AddNote";
 import { useState } from "react";
@@ -11,12 +11,16 @@ const AddButton = () => {
 
     return (
         <>
-            <TouchableHighlight style={styles.button}
+            <TouchableNativeFeedback background={TouchableNativeFeedback.Ripple("#ffffff50", false)}
                 onPress={() => setShowModal(true)}>
-                <Text style={styles.text}>
-                    &#43;
-                </Text>
-            </TouchableHighlight>
+
+                <View style={styles.button}>
+                    <Text style={styles.text}>
+                        &#43;
+                    </Text>
+                </View>
+
+            </TouchableNativeFeedback>
 
             <AddNoteModal showModal={showModal} closeModal={closeModal} />
         </>

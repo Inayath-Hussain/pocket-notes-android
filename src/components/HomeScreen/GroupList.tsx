@@ -70,7 +70,6 @@ const GroupStyle = StyleSheet.create({
 
     text: {
         fontSize: 24,
-        textTransform: "capitalize",
         fontWeight: "500",
         fontFamily: "roboto"
     },
