@@ -16,12 +16,6 @@ type IColorState = typeof colorOptions[number]
 
 const AddNoteModal: React.FC<Iprops> = ({ showModal, closeModal }) => {
 
-    useEffect(() => {
-        return () => {
-            console.log("Add Note Modal unmount")
-        }
-    }, [])
-
     const [groupName, setGroupName] = useState("");
     const [color, setColor] = useState<IColorState>(colorOptions[0]);
     const [groupNameError, setGroupNameError] = useState("");
