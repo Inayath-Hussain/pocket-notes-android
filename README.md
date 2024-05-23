@@ -1,6 +1,14 @@
 This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
 
+# Demo
+
+https://github.com/Inayath-Hussain/pocket-notes-android/assets/118822239/cba26d57-bdce-4110-9a2f-d9610c453d9a
+
+
 # Getting Started
+
+
+
 
 >**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
 
